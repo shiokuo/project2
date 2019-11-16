@@ -23,9 +23,9 @@ x=data[:,1]
 y=data[:,0]
 z=data[:,2]
 v=data[:,5]
-t=data[:,3]
+hdop=data[:,4]
 ax = plt.axes(projection='3d')
-bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=((-t+123000)/5)**(1/2))
+bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=5*hdop)
 xLabel = ax.set_xlabel('lon')
 yLabel = ax.set_ylabel('lat')
 zLabel = ax.set_zlabel('ele')
