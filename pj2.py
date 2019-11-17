@@ -25,7 +25,7 @@ z=data[:,2]
 v=data[:,5]
 hdop=data[:,4]
 ax = plt.axes(projection='3d')
-bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=hdop**4)
+bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=hdop**4,marker='>')
 xLabel = ax.set_xlabel('lon')
 yLabel = ax.set_ylabel('lat')
 zLabel = ax.set_zlabel('ele')
@@ -43,16 +43,28 @@ t2=data2[:,3]
 #bar=ax.scatter3D(x2,y2,z2,c='green',s=(t2-120800)/20,alpha=0.8)
 
 ax.set_title('route mapping')
-#劉先生
+#ax.text(0.9,0.9,0,transform=r.transFigure,s='velocity')
+for timespan in range(0,9):
+    ax.text(x2[timespan],y2[timespan],z2[timespan],s=t2[timespan]-t2[0])
 
-for index in range(1,8,1):
-    acc=np.array(data[index-1,:]+data[index+1,:]-2*data[index,:])
+#劉先生
+for index in range(1,76,1):
+    acc_10avg=np.array((data[index-1,:]+data[index+1,:]-2*data[index,:])/25)
+    acc=acc_10avg
+    #acc_5avg=np.array((data[index,:]-data[index-1,:])/5)
+    #coef_1=
+    #coef_2=
+    #acc=(acc_10avg[index-1,:]*acc_5avg[index,5]/(acc_5avg[index,5]+acc_5avg[index-1,5])+acc_10avg[index,:]*acc_5avg[index,5]/(acc_5avg[index,5]+acc_5avg[index+1,5]))/2
     linedot=[]
-    for dot in range(1,5):
-        linedot.append(data[index,:]+3*dot*acc[:]/5)
+    for dot in range(0,3):
+        linedot.append(data[index,:]+dot*acc[:]/3000000)
+        #linedot.append((data[index,:]+data[index+1,:])/2+10*dot*acc[:]/3)
+    #if acc[:,1]**2+acc[:,2]**2+acc[:,0]**2 >100:
+        #print(data[index-1,:],data[index,:],data[index+1,:])
+        
     acc_draw=np.array(linedot)
     #print(acc_draw)
-    ax.plot3D(acc_draw[:,1],acc_draw[:,0],acc_draw[:,2],color='black')
+    ax.plot3D(acc_draw[:,1],acc_draw[:,0],acc_draw[:,2],color='green')
 
 plt.show()
 
