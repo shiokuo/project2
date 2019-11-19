@@ -45,15 +45,14 @@ t2=data2[:,3]
 ax.set_title('route mapping')
 #ax.text(0.9,0.9,0,transform=r.transFigure,s='velocity')
 for timespan in range(0,9):
-    ax.text(x2[timespan],y2[timespan],z2[timespan],s=t2[timespan]-t2[0])
+    ax.text(x2[timespan],y2[timespan],z2[timespan],s='t=%d'%(t2[timespan]-t2[0]))
 
 #劉先生
-for index in range(1,76,1):
-    acc_10avg=np.array((data[index-1,:]+data[index+1,:]-2*data[index,:])/25)
-    acc=acc_10avg
+for index in range(1,77,1):
+    acc=np.array((data[index-1,:]+data[index+1,:]-2*data[index,:])/25)
     linedot=[]
     for dot in range(0,3):
-        linedot.append(data[index,:]+dot*acc[:]/3000000)
+        linedot.append(data[index,:]+dot*acc[:]/30)
         #linedot.append((data[index,:]+data[index+1,:])/2+10*dot*acc[:]/3)
     #if acc[:,1]**2+acc[:,2]**2+acc[:,0]**2 >100:
         #print(data[index-1,:],data[index,:],data[index+1,:])
@@ -61,7 +60,9 @@ for index in range(1,76,1):
     acc_draw=np.array(linedot)
     #print(acc_draw)
     ax.plot3D(acc_draw[:,1],acc_draw[:,0],acc_draw[:,2],color='green')
-
+ax.plot3D(acc_draw[:,1],acc_draw[:,0],acc_draw[:,2],color='green',label='acc in 10s')
+plt.legend()
 plt.show()
+
 
 
