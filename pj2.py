@@ -51,10 +51,6 @@ for timespan in range(0,9):
 for index in range(1,76,1):
     acc_10avg=np.array((data[index-1,:]+data[index+1,:]-2*data[index,:])/25)
     acc=acc_10avg
-    #acc_5avg=np.array((data[index,:]-data[index-1,:])/5)
-    #coef_1=
-    #coef_2=
-    #acc=(acc_10avg[index-1,:]*acc_5avg[index,5]/(acc_5avg[index,5]+acc_5avg[index-1,5])+acc_10avg[index,:]*acc_5avg[index,5]/(acc_5avg[index,5]+acc_5avg[index+1,5]))/2
     linedot=[]
     for dot in range(0,3):
         linedot.append(data[index,:]+dot*acc[:]/3000000)
