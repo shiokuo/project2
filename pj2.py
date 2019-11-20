@@ -2,22 +2,33 @@
 import numpy as np
 import matplotlib.pyplot as plt 
 from mpl_toolkits import mplot3d
-file_gpx=open('3148203-4.txt')
-line=file_gpx.readline().strip()
+#file_gpx=open('3148203-4.txt')
+#line=file_gpx.readline().strip()
 
-data=np.ones((77,6))
-index=0
-for line in file_gpx:
-    inf=line.strip().split()
-    data[index,:]=[
-        float(inf[0]), #lat
-        float(inf[1]), #lon
-        float(inf[2]), #ele
-        int(inf[3]), #time
-        float(inf[4]), #hdop
-        float(inf[5])  #speed
-    ]
-    index+=1
+file_gpx=[]
+with open ('3148203.gpx') as gps:
+    for line in gps:
+        file_gpx.append(line)
+
+while file_gpx[0]!='<trkseg>':
+    file_gpx.pop(0)
+
+#still something to do
+
+
+#data=np.ones((77,6))
+#index=0
+#for line in file_gpx:
+#    inf=line.strip().split()           #this part may be deleted
+#    data[index,:]=[
+#        float(inf[0]), #lat
+#        float(inf[1]), #lon
+#        float(inf[2]), #ele
+#        int(inf[3]), #time
+#        float(inf[4]), #hdop
+#        float(inf[5])  #speed
+#    ]
+#    index+=1
 #曾先生
 x=data[:,1]
 y=data[:,0]
