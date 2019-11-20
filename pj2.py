@@ -8,7 +8,7 @@ from mpl_toolkits import mplot3d
 file_gpx=[]
 with open ('3148203.gpx') as gps:
     for line in gps:
-        file_gpx.append(line)
+        file_gpx.append(line.strip())
 
 while file_gpx[0]!='<trkseg>':
     file_gpx.pop(0)
