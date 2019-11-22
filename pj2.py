@@ -54,7 +54,7 @@ while index<len(inf)-5:
     data[row,4]=inf[index+4]
     data[row,5]=inf[index+5]
     index+=6
-print(data)
+
 
 
 #still something to do
