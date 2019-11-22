@@ -12,6 +12,50 @@ with open ('3148203.gpx') as gps:
 
 while file_gpx[0]!='<trkseg>':
     file_gpx.pop(0)
+inf=[]
+for line in file_gpx:
+    if line.startswith ('<trkpt'):
+        lat=line[11:21]
+        lat.strip('\"')
+        lon=line[29:len(line)-2]
+        inf.append(lat)
+        inf.append(lon)
+    if line.startswith('<ele>'):
+        ele=line[5:10]
+        inf.append(ele)
+    if line.startswith('<time>'):
+        time_s=''
+        hour=line[17:19]
+        minu=line[20:22]
+        sec=line[23:25]
+        time_s=time_s+hour+minu+sec
+        time_n=int(time_s)
+        
+        time=[]
+        time.append(time_n)
+        
+        inf.append(time)
+    if line.startswith('<hdop>'):
+        hdop=line[6:9]
+        inf.append(hdop)
+    if line.startswith('<speed>'):
+        speed=line[7:12]
+        inf.append(speed)
+
+long=int(len(inf)/6)
+data=np.ones((long,6))
+index=0
+while index<len(inf)-5:
+    row=0
+    data[row,0]=inf[index]
+    data[row,1]=inf[index+1]
+    data[row,2]=inf[index+2]
+    data[row,3]=inf[index+3]
+    data[row,4]=inf[index+4]
+    data[row,5]=inf[index+5]
+    index+=6
+print(data)
+
 
 #still something to do
 
