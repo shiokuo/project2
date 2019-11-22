@@ -41,7 +41,7 @@ for line in file_gpx:
     if line.startswith('<speed>'):
         speed=line[7:12]
         inf.append(speed)
-
+#上面修好才有下面
 long=int(len(inf)/6)
 data=np.ones((long,6))
 index=0
