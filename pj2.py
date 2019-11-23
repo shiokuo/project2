@@ -58,7 +58,7 @@ while index<len(inf)-5:
     row+=1
     index+=6
 
-print(data)
+#print(data)
 
 #still something to do
 
@@ -110,7 +110,7 @@ for index in range(1,77,1):
     acc=np.array((data[index-1,:]+data[index+1,:]-2*data[index,:])/25)
     linedot=[]
     for dot in range(0,3):
-        linedot.append(data[index,:]+dot*acc[:]/30)
+        linedot.append(data[index,:]+dot*acc[:]/3)
         #linedot.append((data[index,:]+data[index+1,:])/2+10*dot*acc[:]/3)
     #if acc[:,1]**2+acc[:,2]**2+acc[:,0]**2 >100:
         #print(data[index-1,:],data[index,:],data[index+1,:])
