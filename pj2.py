@@ -15,13 +15,14 @@ while file_gpx[0]!='<trkseg>':
 inf=[]
 for line in file_gpx:
     if line.startswith ('<trkpt'):
-        lat=line[11:21]
-        lat.strip('\"')
-        lon=line[29:len(line)-2]
-        inf.append(lat)
-        inf.append(lon)
+        l=line.split()       
+        lat=l[1][5:-1]
+       #lat.strip('\"')
+        lon=l[2][5:-2]
+        inf.append(float(lat))
+        inf.append(float(lon))
     if line.startswith('<ele>'):
-        ele=line[5:10]
+        ele=float(line[5:-6])
         inf.append(ele)
     if line.startswith('<time>'):
         time_s=''
@@ -31,31 +32,33 @@ for line in file_gpx:
         time_s=time_s+hour+minu+sec
         time_n=int(time_s)
         
-        time=[]
-        time.append(time_n)
+        #time=[]
+        #time.append(time_n)
         
-        inf.append(time)
+        inf.append(time_n)
     if line.startswith('<hdop>'):
-        hdop=line[6:9]
+        hdop=float(line[6:-7])
         inf.append(hdop)
     if line.startswith('<speed>'):
-        speed=line[7:12]
+        speed=float(line[7:-8])
         inf.append(speed)
+#print(inf)
 #上面修好才有下面
 long=int(len(inf)/6)
 data=np.ones((long,6))
 index=0
+row=0
 while index<len(inf)-5:
-    row=0
     data[row,0]=inf[index]
     data[row,1]=inf[index+1]
     data[row,2]=inf[index+2]
     data[row,3]=inf[index+3]
     data[row,4]=inf[index+4]
     data[row,5]=inf[index+5]
+    row+=1
     index+=6
 
-
+print(data)
 
 #still something to do
 
