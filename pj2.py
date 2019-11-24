@@ -83,7 +83,7 @@ z=data[:,2]
 v=data[:,5]
 hdop=data[:,4]
 ax = plt.axes(projection='3d')
-bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=hdop**4,marker='>',label='size:hdop\ncolor:v')
+bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=hdop**4,marker='>',label='size:hdop')
 xLabel = ax.set_xlabel('longitude')
 yLabel = ax.set_ylabel('latitude')
 zLabel = ax.set_zlabel('elevation')
@@ -101,7 +101,7 @@ z2=data2[:,2]
 t2=data2[:,3]
 #bar=ax.scatter3D(x2,y2,z2,c='green',s=(t2-120800)/20,alpha=0.8)
 
-ax.set_title('route mapping')
+ax.set_title('project2: route mapping')
 #ax.text(0.9,0.9,0,transform=r.transFigure,s='velocity')
 for timespan in range(0,9):
     ax.text(x2[timespan],y2[timespan],z2[timespan],s='t=%d'%(t2[timespan]-t2[0]))
