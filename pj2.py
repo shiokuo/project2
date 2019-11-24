@@ -84,13 +84,14 @@ v=data[:,5]
 hdop=data[:,4]
 ax = plt.axes(projection='3d')
 bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=hdop**4,marker='>',label='size:hdop\ncolor:v')
-xLabel = ax.set_xlabel('longtitude')
+xLabel = ax.set_xlabel('longitude')
 yLabel = ax.set_ylabel('latitude')
-zLabel = ax.set_zlabel('elevatiion')
-plt.xlim([2.32,2.36])
+zLabel = ax.set_zlabel('elevation')
+plt.xlim([2.325,2.355])
 plt.ylim([48.747,48.754])
 ax.set_zlim([-50,100])
-plt.colorbar(bar)
+cbar=plt.colorbar(bar)
+cbar.set_label('speed',rotation=360)
 
 
 data2=data[0::8,:]
