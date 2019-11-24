@@ -83,7 +83,7 @@ z=data[:,2]
 v=data[:,5]
 hdop=data[:,4]
 ax = plt.axes(projection='3d')
-bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=hdop**4,marker='>')
+bar=ax.scatter3D(x,y,z,c=v,cmap='YlOrRd',s=hdop**4,marker='>',label='size:hdop\ncolor:v')
 xLabel = ax.set_xlabel('lon')
 yLabel = ax.set_ylabel('lat')
 zLabel = ax.set_zlabel('ele')
@@ -110,7 +110,7 @@ for index in range(1,77,1):
     acc=np.array((data[index-1,:]+data[index+1,:]-2*data[index,:])/25)
     linedot=[]
     for dot in range(0,3):
-        linedot.append(data[index,:]+dot*acc[:]/3)
+        linedot.append(data[index,:]+dot*acc[:]*10)
         #linedot.append((data[index,:]+data[index+1,:])/2+10*dot*acc[:]/3)
     #if acc[:,1]**2+acc[:,2]**2+acc[:,0]**2 >100:
         #print(data[index-1,:],data[index,:],data[index+1,:])
